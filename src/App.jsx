@@ -289,6 +289,19 @@ const SearchBar = () => {
   const [suggestions, setSuggestions] = useState([]);
   const [searchResult, setSearchResult] = useState(null);
 
+  const highlightText = (text, query) => {
+    if (!query) return text;
+
+    const parts = text.split(new RegExp(`(${query})`, 'gi'));
+    return parts.map((part, index) =>
+      part.toLowerCase() === query.toLowerCase() ? (
+        <strong key={index} className="highlight">{part}</strong>
+      ) : (
+        part
+      )
+    );
+  };
+
   const handleSearch = (e) => {
     const input = e.target.value.toLowerCase();
     setQuery(input);
@@ -322,50 +335,51 @@ const SearchBar = () => {
 
   return (
     <>
-    <h1  className='head'>Country Search</h1>
-    <div className="search-bar">
-      <input
-        type="text"
-        className="search-input"
-        placeholder="Search for a country or capital..."
-        value={query}
-        onChange={handleSearch}
-      />
-      <button
-        className="search-button"
-        onClick={handleSearchButtonClick}
-      >
-        Search
-      </button>
-      
-      {suggestions.length > 0 && (
-        <ul className="suggestions-list">
-          {suggestions.map((item, index) => (
-            <li
-              key={index}
-              className="suggestion-item"
-              onClick={() => handleSuggestionClick(item)}
-            >
-              <strong>{item.country}</strong> - {item.capital}
-            </li>
-          ))}
-        </ul>
-      )}
-      
-      {searchResult && (
-        <div className="search-result">
-          <h3>Search Result:</h3>
-          <p>
-            <strong>Country:</strong> {searchResult.country}<br />
-            <strong>Capital:</strong> {searchResult.capital}<br />
-            <strong>Population:</strong> {searchResult.population}<br />
-            <strong>Official Language:</strong> {Array.isArray(searchResult.official_language) ? searchResult.official_language.join(', ') : searchResult.official_language}<br />
-            <strong>Currency:</strong> {searchResult.currency}
-          </p>
-        </div>
-      )}
-    </div>
- </> );
+      <h1 className='head'>Country Search</h1>
+      <div className="search-bar">
+        <input
+          type="text"
+          className="search-input"
+          placeholder="Search for a country or capital..."
+          value={query}
+          onChange={handleSearch}
+        />
+        <button
+          className="search-button"
+          onClick={handleSearchButtonClick}
+        >
+          Search
+        </button>
+        
+        {suggestions.length > 0 && (
+          <ul className="suggestions-list">
+            {suggestions.map((item, index) => (
+              <li
+                key={index}
+                className="suggestion-item"
+                onClick={() => handleSuggestionClick(item)}
+              >
+                {highlightText(item.country, query)} - {highlightText(item.capital, query)}
+              </li>
+            ))}
+          </ul>
+        )}
+        
+        {searchResult && (
+          <div className="search-result">
+            <h3>Search Result:</h3>
+            <p>
+              <strong>Country:</strong> {searchResult.country}<br />
+              <strong>Capital:</strong> {searchResult.capital}<br />
+              <strong>Population:</strong> {searchResult.population}<br />
+              <strong>Official Language:</strong> {Array.isArray(searchResult.official_language) ? searchResult.official_language.join(', ') : searchResult.official_language}<br />
+              <strong>Currency:</strong> {searchResult.currency}
+            </p>
+          </div>
+        )}
+      </div>
+    </>
+  );
 };
 
 export default SearchBar;
