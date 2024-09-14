@@ -282,8 +282,9 @@ const countries = [
     "official_language": "Polish",
     "currency": "Polish Zloty"
   }
-  // Add the rest of your country data here...
+  
 ];
+
 const SearchBar = () => {
   const [query, setQuery] = useState('');
   const [suggestions, setSuggestions] = useState([]);
@@ -301,6 +302,7 @@ const SearchBar = () => {
       )
     );
   };
+
 
   const handleSearch = (e) => {
     const input = e.target.value.toLowerCase();
@@ -333,25 +335,27 @@ const SearchBar = () => {
     setSuggestions([]);
   };
 
-  return (
+  return (                                              
     <>
-      <h1 className='head'>Country Search</h1>
-      <div className="search-bar">
+      <h1 className='head'>Country Search</h1>         
+                                                         
+      <div className="search-bar">                
         <input
           type="text"
           className="search-input"
           placeholder="Search for a country or capital..."
           value={query}
-          onChange={handleSearch}
+          onChange={handleSearch}                              
         />
-        <button
+
+        <button                                      //Search Button
           className="search-button"
           onClick={handleSearchButtonClick}
         >
           Search
         </button>
         
-        {suggestions.length > 0 && (
+        {suggestions.length > 0 && (                 //Sugestion list
           <ul className="suggestions-list">
             {suggestions.map((item, index) => (
               <li
@@ -365,8 +369,8 @@ const SearchBar = () => {
           </ul>
         )}
         
-        {searchResult && (
-          <div className="search-result">
+        {searchResult && (                           //Print Results
+          <div className="search-result">       
             <h3>Search Result:</h3>
             <p>
               <strong>Country:</strong> {searchResult.country}<br />
