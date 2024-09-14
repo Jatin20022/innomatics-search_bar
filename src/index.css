@@ -1,0 +1,99 @@
+body{
+  background-color: rgb(241, 232, 232);
+}
+
+.head{
+  color: green;
+  display: flex;
+  justify-content: center;
+  font-size: 50px;
+}
+.search-bar {
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 60%; /* Adjust as needed */
+  margin: 0 auto; /* Center the search bar */
+  top: 10px;
+}
+
+.search-input {
+  flex-grow: 1;
+  padding: 0.5rem;
+  border: 1px solid #dcdcdc; /* Lighter gray for a Google-like look */
+  border-radius: 24px; /* Rounded corners */
+  font-size: 1rem;
+  margin-right: 0.5rem; /* Space between input and button */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+.search-button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 24px; /* Rounded corners */
+  background-color: #1a73e8; /* Google's blue */
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+.search-button:hover {
+  background-color: #1558b0; /* Darker blue on hover */
+}
+
+.suggestions-list {
+  position: absolute;
+  top: 100%; /* Position below the search bar */
+  left: 0;
+  right: 0;
+  background-color: white;
+  border: 1px solid #dcdcdc; /* Lighter gray border */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-height: 200px;
+  overflow-y: auto;
+  margin-top: 0.5rem;
+  list-style: none;
+  padding: 0;
+  z-index: 1000;
+}
+
+.suggestion-item {
+  padding: 0.75rem; /* More padding for a Google-like feel */
+  cursor: pointer;
+}
+
+.suggestion-item:hover {
+  background-color: #f5f5f5; /* Subtle hover effect */
+}
+
+.search-result-container {
+  margin-top: 1rem; /* Space between suggestions and search result */
+  width: 100%; /* Ensure it takes full width */
+  position: relative; /* Allow positioning within this container */
+}
+
+.search-result {
+  position: absolute;
+  top: 70px;
+  color: blue;
+  width: 630px;
+  padding: 1rem;
+  border: 1px solid #dcdcdc; /* Lighter gray border */
+  border-radius: 8px; /* Rounded corners */
+  background-color: rgb(211, 203, 203);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 0.5rem;
+}
+
+.search-result h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.2rem; /* Slightly larger heading */
+  font-weight: bold; /* Bold heading */
+}
+
+
+.search-result p {
+  margin: 0;
+}
